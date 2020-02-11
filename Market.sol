@@ -46,8 +46,8 @@ contract Market is Secondary{
         imageURL = _imageUrl;
         buyerReceivedGoods = false;
         bidPeriodStartTime = block.timestamp;
-        // bidPeriodEndTime = block.timestamp + (_daysToExpiry * 1 days);
-        bidPeriodEndTime = block.timestamp + (_daysToExpiry * 1 minutes);
+        bidPeriodEndTime = block.timestamp + (_daysToExpiry * 1 days);
+        // bidPeriodEndTime = block.timestamp + (_daysToExpiry * 1 minutes);
         marketID = keccak256(abi.encodePacked(bidPeriodStartTime,msg.value,productName,bidPeriodEndTime,description));
     }
 
@@ -138,7 +138,7 @@ contract Market is Secondary{
         require(deliveryDays <= 14,"Delivery days must be less than or equal to 14");
         require(bidders[_bidderAddress],"Not a valid bidder");
         require(_seller == seller,"Not your market");
-        require(winninBidder == address(0),"You have already selected a winner");
+        require(winningBidder == address(0),"You have already selected a winner");
         // require(bidPeriodEndTime < now,"Bidding period not over");
 
         bidPeriodEndTime = now;//end bidding period
